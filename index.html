@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dani Peluquería - Control Diario</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <h1>✂️ Dani Peluquería</h1>
+
+    <div id="status-msg">Iniciando sistema...</div>
+
+    <div id="admin-panel">
+        <input type="password" id="admin-pass" placeholder="Password">
+        <button onclick="activarModoAdmin()" id="btn-login" class="btn-login">🔓 Entrar</button>
+        
+        <div id="admin-controls" style="display:none; flex-direction: column; gap: 10px; width: 100%;">
+            <div style="display: flex; gap: 10px; width: 100%;">
+                <button onclick="agregarFila()" class="btn-add">➕ Nuevo Registro</button>
+                <button onclick="guardarCambios()" id="btn-save" class="btn-save">💾 Guardar Todo</button>
+            </div>
+            
+            <div class="filtro-container">
+                <label>🔎 Ver fecha: </label>
+                <input type="date" id="filtro-fecha" onchange="renderTabla()">
+                <button onclick="limpiarFiltro()" class="btn-clear">Ver Todos</button>
+            </div>
+            
+            <button onclick="cerrarSesion()" class="btn-logout">🚪 Salir</button>
+        </div>
+    </div>
+
+    <div id="loading">Sincronizando con la nube...</div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Servicio</th>
+                    <th>Cliente</th>
+                    <th>Monto</th>
+                    <th>Hora/Fecha</th>
+                    <th id="col-acciones" style="display:none;">Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tabla-body"></tbody>
+        </table>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database-compat.js"></script>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>
