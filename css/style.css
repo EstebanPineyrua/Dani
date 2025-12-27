@@ -44,7 +44,6 @@ h1 { text-align: center; color: var(--dark); margin: 15px 0; }
 }
 
 input[type="password"], input[type="date"], input[type="time"] { 
-    padding: 10px; 
     border: 2px solid #ddd; 
     border-radius: 8px; 
     color: #000; 
