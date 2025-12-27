@@ -3,36 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dani Peluquería - Control Diario</title>
+    <title>Dani Peluquería - Control</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <h1>✂️ Dani Peluquería</h1>
 
-    <div id="status-msg">Iniciando sistema...</div>
+    <div id="status-msg">Conectando...</div>
 
     <div id="admin-panel">
-        <input type="password" id="admin-pass" placeholder="Password">
+        <input type="password" id="admin-pass" placeholder="Clave: Meki">
         <button onclick="activarModoAdmin()" id="btn-login" class="btn-login">🔓 Entrar</button>
         
-        <div id="admin-controls" style="display:none; flex-direction: column; gap: 10px; width: 100%;">
-            <div style="display: flex; gap: 10px; width: 100%;">
-                <button onclick="agregarFila()" class="btn-add">➕ Nuevo Registro</button>
-                <button onclick="guardarCambios()" id="btn-save" class="btn-save">💾 Guardar Todo</button>
+        <div id="admin-controls" style="display:none; flex-direction: column; gap: 8px; width: 100%;">
+            <div style="display: flex; gap: 8px; width: 100%;">
+                <button onclick="agregarFila()" class="btn-add">➕ Nuevo</button>
+                <button onclick="guardarCambios()" id="btn-save" class="btn-save">💾 Guardar</button>
             </div>
             
             <div class="filtro-container">
-                <label>🔎 Ver fecha: </label>
+                <label>🔎 Ver día: </label>
                 <input type="date" id="filtro-fecha" onchange="renderTabla()">
-                <button onclick="limpiarFiltro()" class="btn-clear">Ver Todos</button>
+                <button onclick="limpiarFiltro()" class="btn-clear">Todos</button>
             </div>
             
             <button onclick="cerrarSesion()" class="btn-logout">🚪 Salir</button>
         </div>
     </div>
 
-    <div id="loading">Sincronizando con la nube...</div>
+    <div id="loading">Sincronizando...</div>
 
     <div class="table-container">
         <table>
@@ -42,7 +42,7 @@
                     <th>Cliente</th>
                     <th>Monto</th>
                     <th>Hora/Fecha</th>
-                    <th id="col-acciones" style="display:none;">Acciones</th>
+                    <th id="col-acciones" style="display:none;"></th>
                 </tr>
             </thead>
             <tbody id="tabla-body"></tbody>
@@ -51,7 +51,6 @@
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database-compat.js"></script>
-    
     <script src="js/script.js"></script>
 </body>
 </html>

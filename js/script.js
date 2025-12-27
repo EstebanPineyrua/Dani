@@ -19,12 +19,12 @@ db.ref("servicios").on("value", (snapshot) => {
     stockData = data ? Object.values(data) : [];
     renderTabla();
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('status-msg').innerHTML = "🟢 <span style='color:black'>Conectado y sincronizado</span>";
+    document.getElementById('status-msg').innerHTML = "🟢 <span style='color:black'>Conectado</span>";
 });
 
 function activarModoAdmin() {
     const pass = document.getElementById('admin-pass').value;
-    if (btoa(pass) === "TWVraQ==") { 
+    if (btoa(pass) === "TWVraQ==") {
         isAdmin = true;
         document.getElementById('admin-controls').style.display = 'flex';
         document.getElementById('admin-pass').style.display = 'none';
@@ -62,13 +62,13 @@ function renderTabla() {
         row.innerHTML = `
             <td><input class="editable bold-text" value="${item.servicio || ''}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'servicio', this.value)"></td>
             <td><input class="editable" value="${item.cliente || ''}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'cliente', this.value)"></td>
-            <td class="td-monto">
-                <div class="monto-container">
+            <td class="celda-monto">
+                <div class="monto-wrapper">
                     <span class="currency-symbol">$</span>
                     <input type="number" class="editable bold-text monto-input" value="${item.monto || 0}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'monto', Number(this.value))">
                 </div>
             </td>
-            <td class="td-hora">
+            <td>
                 <input type="time" class="editable-date" value="${item.hora}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'hora', this.value)">
                 <input type="date" class="editable-date fecha-small" value="${item.fechaId}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'fechaId', this.value)">
             </td>
@@ -101,7 +101,7 @@ function agregarFila() {
 }
 
 function eliminarFila(i) {
-    if(confirm("¿Borrar?")) { stockData.splice(i, 1); renderTabla(); }
+    if(confirm("¿Borrar registro?")) { stockData.splice(i, 1); renderTabla(); }
 }
 
 async function guardarCambios() {
@@ -110,9 +110,9 @@ async function guardarCambios() {
     btn.innerText = "⏳...";
     try {
         await db.ref("servicios").set(stockData);
-        alert("✅ Guardado");
-    } catch (e) { alert("Error"); }
-    btn.innerText = "💾 Guardar Todo";
+        alert("✅ Guardado correctamente");
+    } catch (e) { alert("Error al guardar"); }
+    btn.innerText = "💾 Guardar";
 }
 
 function limpiarFiltro() { document.getElementById('filtro-fecha').value = ''; renderTabla(); }
