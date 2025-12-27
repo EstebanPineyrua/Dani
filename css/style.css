@@ -1,145 +1,80 @@
-:root { 
-    --primary: #3498db; 
-    --success: #27ae60; 
-    --danger: #e74c3c; 
-    --dark: #2c3e50; 
-}
+:root { --primary: #3498db; --success: #27ae60; --danger: #e74c3c; --dark: #2c3e50; }
 
 body { 
     font-family: 'Segoe UI', sans-serif; 
     background: #f4f7f6; 
-    padding: 10px; 
+    padding: 5px; 
     margin: 0 auto; 
-    max-width: 900px; 
+    max-width: 100%; 
     color: #000; 
+    overflow-x: hidden; /* Evita scroll lateral en el cuerpo */
 }
 
-h1 { text-align: center; color: var(--dark); margin: 15px 0; }
+h1 { text-align: center; color: var(--dark); font-size: 1.4rem; margin: 10px 0; }
 
 #admin-panel { 
-    background: white; 
-    padding: 15px; 
-    border-radius: 12px; 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
-    margin-bottom: 20px; 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: 10px; 
+    background: white; padding: 10px; border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 10px; 
+    display: flex; flex-direction: column; align-items: center; gap: 8px; 
 }
 
-#admin-controls { width: 100%; display: none; flex-direction: column; gap: 10px; }
+#admin-controls { width: 100%; display: none; flex-direction: column; gap: 8px; }
 
 .filtro-container { 
-    background: #f9f9f9; 
-    padding: 10px; 
-    border-radius: 8px; 
-    width: 100%; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    gap: 10px; 
-    border: 1px solid #eee; 
-    box-sizing: border-box;
+    background: #f9f9f9; padding: 8px; border-radius: 6px; width: 100%; 
+    display: flex; justify-content: center; align-items: center; gap: 5px; 
+    border: 1px solid #eee; box-sizing: border-box; font-size: 0.9rem;
 }
 
 input[type="password"], input[type="date"], input[type="time"] { 
-    border: 2px solid #ddd; 
-    border-radius: 8px; 
-    color: #000; 
-    font-size: 1rem;
-    background: white;
+    padding: 8px; border: 1px solid #ddd; border-radius: 5px; 
+    color: #000; font-size: 0.9rem; background: white; 
 }
 
-button { 
-    padding: 12px 15px; 
-    border: none; 
-    border-radius: 8px; 
-    font-weight: bold; 
-    cursor: pointer; 
-    color: white; 
-}
-
-.btn-login { background: var(--dark); width: 100%; max-width: 300px; }
+button { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: white; }
+.btn-login { background: var(--dark); width: 100%; max-width: 250px; }
 .btn-save { background: var(--success); flex: 1; }
 .btn-add { background: var(--primary); flex: 1; }
-.btn-logout { background: #34495e; width: 100%; }
-.btn-del { background: var(--danger); padding: 5px 10px; }
-.btn-clear { background: #95a5a6; padding: 8px; font-size: 0.8rem; }
+.btn-logout { background: #34495e; width: 100%; font-size: 0.8rem; }
+.btn-del { background: var(--danger); padding: 3px 7px; font-size: 0.7rem; }
 
+/* TABLA COMPACTA */
 .table-container { 
-    overflow-x: auto; 
-    background: white; 
-    border-radius: 12px; 
-    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
-}
-
-table { width: 100%; border-collapse: collapse; min-width: 480px; }
-th { background: var(--primary); color: white; padding: 12px; text-align: left; font-size: 0.85rem; }
-td { padding: 10px; border-bottom: 1px solid #eee; color: #000 !important; vertical-align: middle; }
-
-/* Alineación del Monto con el $ */
-.monto-container {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-}
-
-.currency-symbol {
-    font-weight: 800;
-    color: #000;
-    font-size: 1rem;
-    padding: 8px;
-}
-
-.monto-input {
-    width: 70px !important;
-    padding: 4px 0 !important;
-    text-align: left;
-}
-
-.editable { 
-    width: 100%; 
-    border: 1px solid transparent; 
-    background: transparent; 
-    padding: 5px; 
-    color: #000 !important; 
-    font-size: 0.95rem; 
-}
-
-.editable-date {
-    display: block;
     width: 100%;
-    border: 1px solid transparent;
-    background: transparent;
-    font-weight: bold;
-    padding: 2px;
+    background: white; border-radius: 8px; 
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05); 
+    overflow: hidden; /* Intentamos que no scrollee */
 }
 
-.bold-text { font-weight: 800 !important; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; } /* table-layout: fixed es la clave */
 
-/* Efecto al editar */
-.editing .editable, .editing .editable-date { 
-    border: 1px solid #ccc; 
-    background: #fff; 
-    border-radius: 4px; 
-}
+th { background: var(--primary); color: white; padding: 8px 4px; font-size: 0.75rem; text-align: center; }
+td { padding: 5px 2px; border-bottom: 1px solid #eee; color: #000 !important; vertical-align: middle; text-align: center; }
 
-.fila-total { 
-    background: #e8f5e9 !important; 
-    border-top: 2px solid var(--success); 
-}
+/* Anchos de columnas fijos para que no se estire */
+th:nth-child(1), td:nth-child(1) { width: 25%; } /* Servicio */
+th:nth-child(2), td:nth-child(2) { width: 25%; } /* Cliente */
+th:nth-child(3), td:nth-child(3) { width: 20%; } /* Monto */
+th:nth-child(4), td:nth-child(4) { width: 20%; } /* Hora/Fecha */
+th:nth-child(5), td:nth-child(5) { width: 10%; } /* Acciones */
 
-input:disabled { 
-    opacity: 1; 
-    -webkit-text-fill-color: #000000; 
-    background: transparent;
-}
+.monto-container { display: flex; align-items: center; justify-content: center; gap: 2px; }
+.currency-symbol { font-weight: 800; font-size: 0.85rem; }
+.monto-input { width: 100% !important; font-size: 0.9rem !important; padding: 2px !important; }
 
-#loading, #status-msg { text-align: center; margin: 10px; font-weight: bold; }
+.editable { width: 100%; border: 1px solid transparent; background: transparent; padding: 2px; color: #000 !important; font-size: 0.85rem; text-align: center; }
+.editable-date { display: block; width: 100%; border: 1px solid transparent; background: transparent; font-weight: bold; padding: 0; font-size: 0.8rem; text-align: center; }
+.fecha-small { font-size: 0.65rem !important; font-weight: normal; color: #666; }
 
-@media (max-width: 600px) {
-    .filtro-container { flex-direction: column; }
-    button { width: 100%; }
-    td { padding: 8px 5px; font-size: 0.85rem; }
+.bold-text { font-weight: 700 !important; }
+.editing .editable, .editing .editable-date { border: 1px solid #ccc; background: #fff; border-radius: 3px; }
+
+.fila-total { background: #e8f5e9 !important; border-top: 2px solid var(--success); }
+input:disabled { opacity: 1; -webkit-text-fill-color: #000000; background: transparent; }
+
+#loading, #status-msg { text-align: center; margin: 5px; font-weight: bold; font-size: 0.8rem; }
+
+@media (max-width: 400px) {
+    th, td { font-size: 0.7rem; }
+    .currency-symbol { font-size: 0.75rem; }
 }
