@@ -19,7 +19,7 @@ db.ref("servicios").on("value", (snapshot) => {
     stockData = data ? Object.values(data) : [];
     renderTabla();
     document.getElementById('loading').style.display = 'none';
-    document.getElementById('status-msg').innerHTML = "🟢 <span style='color:black'>Conectado</span>";
+    document.getElementById('status-msg').innerHTML = "🟢 <span style='color:black'>Conectado y sincronizado</span>";
 });
 
 function activarModoAdmin() {
