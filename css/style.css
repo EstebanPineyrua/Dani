@@ -1,32 +1,124 @@
-:root { --primary: #3498db; --success: #27ae60; --danger: #e74c3c; --dark: #2c3e50; }
-body { font-family: 'Segoe UI', sans-serif; background: #f4f7f6; padding: 10px; margin: 0 auto; max-width: 900px; color: #000; }
+:root { 
+    --primary: #3498db; 
+    --success: #27ae60; 
+    --danger: #e74c3c; 
+    --dark: #2c3e50; 
+}
+
+body { 
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    background: #f4f7f6; 
+    padding: 10px; 
+    margin: 0 auto; 
+    max-width: 900px; 
+    color: #000; 
+}
+
 h1 { text-align: center; color: var(--dark); margin: 15px 0; }
 
-#admin-panel { background: white; padding: 15px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); margin-bottom: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-input[type="password"], input[type="date"] { padding: 10px; border: 2px solid #ddd; border-radius: 8px; font-size: 1rem; color: #000; }
+#admin-panel { 
+    background: white; 
+    padding: 15px; 
+    border-radius: 12px; 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1); 
+    margin-bottom: 20px; 
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    gap: 10px; 
+}
 
-.filtro-container { background: #f9f9f9; padding: 10px; border-radius: 8px; width: 100%; display: flex; justify-content: center; align-items: center; gap: 10px; border: 1px solid #eee; }
+#admin-controls { width: 100%; display: none; flex-direction: column; gap: 10px; }
 
-button { padding: 12px 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; color: white; transition: 0.3s; }
+.filtro-container { 
+    background: #f9f9f9; 
+    padding: 10px; 
+    border-radius: 8px; 
+    width: 100%; 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    gap: 10px; 
+    border: 1px solid #eee; 
+    box-sizing: border-box;
+}
+
+input[type="password"], input[type="date"], input[type="time"] { 
+    padding: 10px; 
+    border: 2px solid #ddd; 
+    border-radius: 8px; 
+    color: #000; 
+    font-size: 1rem;
+}
+
+button { 
+    padding: 12px 15px; 
+    border: none; 
+    border-radius: 8px; 
+    font-weight: bold; 
+    cursor: pointer; 
+    color: white; 
+}
+
 .btn-login { background: var(--dark); width: 100%; max-width: 300px; }
-.btn-save { background: var(--success); }
-.btn-add { background: var(--primary); }
-.btn-clear { background: #95a5a6; padding: 8px 12px; font-size: 0.8rem; }
-.btn-logout { background: #34495e; width: 100%; }
+.btn-save { background: var(--success); flex: 1; }
+.btn-add { background: var(--primary); flex: 1; }
+.btn-logout { background: #34495e; width: 100%; margin-top: 5px; }
 .btn-del { background: var(--danger); padding: 5px 10px; }
+.btn-clear { background: #95a5a6; padding: 8px; font-size: 0.8rem; }
 
-.table-container { overflow-x: auto; background: white; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+.table-container { 
+    overflow-x: auto; 
+    background: white; 
+    border-radius: 12px; 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+}
+
 table { width: 100%; border-collapse: collapse; min-width: 500px; }
 th { background: var(--primary); color: white; padding: 12px; text-align: left; font-size: 0.85rem; }
 td { padding: 12px; border-bottom: 1px solid #eee; color: #000 !important; }
 
-.fila-total { background: #f0fdf4 !important; border-top: 2px solid var(--success); }
+.editable { 
+    width: 100%; 
+    border: 1px solid transparent; 
+    background: transparent; 
+    padding: 5px; 
+    color: #000 !important; 
+    font-size: 0.95rem; 
+}
 
-.editable { width: 100%; border: 1px solid transparent; background: transparent; padding: 5px; color: #000 !important; font-size: 0.95rem; }
+.editable-date {
+    display: block;
+    width: 100%;
+    border: 1px solid transparent;
+    background: transparent;
+    font-weight: bold;
+    padding: 2px;
+}
+
 .bold-text { font-weight: 800 !important; }
-.editing .editable { border: 1px solid #ccc; background: #fff; border-radius: 4px; }
 
-input:disabled { opacity: 1; -webkit-text-fill-color: #000000; }
+/* Cuando está en modo edición */
+.editing .editable, .editing .editable-date { 
+    border: 1px solid #ccc; 
+    background: #fff; 
+    border-radius: 4px; 
+}
+
+.fila-total { 
+    background: #e8f5e9 !important; 
+    border-top: 2px solid var(--success); 
+}
+
+input:disabled { 
+    opacity: 1; 
+    -webkit-text-fill-color: #000000; 
+    background: transparent;
+}
 
 #loading, #status-msg { text-align: center; margin: 10px; font-weight: bold; }
-@media (max-width: 600px) { #admin-controls { flex-direction: column; } }
+
+@media (max-width: 600px) {
+    .filtro-container { flex-direction: column; }
+    button { width: 100%; }
+}
