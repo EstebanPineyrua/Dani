@@ -89,6 +89,7 @@ td { padding: 10px; border-bottom: 1px solid #eee; color: #000 !important; verti
     font-weight: 800;
     color: #000;
     font-size: 1rem;
+    padding: 8px;
 }
 
 .monto-input {
