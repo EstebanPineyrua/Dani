@@ -1,61 +1,85 @@
-:root { --primary: #3498db; --success: #27ae60; --danger: #e74c3c; --dark: #2c3e50; }
+:root { --azul: #3a8ed5; --verde: #d4e9d2; --dark: #33475b; }
 
 body { 
-    font-family: 'Segoe UI', sans-serif; background: #f4f7f6; 
-    padding: 5px; margin: 0 auto; max-width: 100%; color: #000; overflow-x: hidden; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; 
+    background-color: #f0f2f5; margin: 0; padding: 10px;
+    display: flex; flex-direction: column; align-items: center;
 }
 
-h1 { text-align: center; color: var(--dark); font-size: 1.3rem; margin: 10px 0; }
+h1 { color: var(--dark); font-size: 1.4rem; margin: 10px 0; font-weight: 800; }
 
-#admin-panel { 
-    background: white; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
-    margin-bottom: 10px; display: flex; flex-direction: column; align-items: center; gap: 8px; 
+.main-card {
+    background: white; width: 95%; max-width: 400px;
+    padding: 15px; border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    margin-bottom: 15px; text-align: center;
 }
 
-#admin-controls { width: 100%; display: none; flex-direction: column; gap: 8px; }
+#status-msg { margin-bottom: 10px; font-weight: bold; font-size: 0.8rem; color: #27ae60; }
 
-.filtro-container { 
-    background: #f9f9f9; padding: 8px; border-radius: 6px; width: 100%; 
-    display: flex; justify-content: center; align-items: center; gap: 5px; border: 1px solid #eee; 
+.input-login {
+    width: 80%; padding: 8px; border: 1px solid #ddd;
+    border-radius: 6px; margin-bottom: 10px; font-size: 0.9rem;
 }
 
-input[type="password"], input[type="date"], input[type="time"] { 
-    padding: 8px; border: 1px solid #ddd; border-radius: 5px; font-size: 0.9rem; color: #000; 
+.btn-entrar {
+    background: var(--dark); color: white; border: none;
+    width: 85%; padding: 10px; border-radius: 6px;
+    font-weight: bold; cursor: pointer;
 }
 
-button { padding: 10px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; color: white; }
-.btn-login { background: var(--dark); width: 100%; max-width: 250px; }
-.btn-save { background: var(--success); flex: 1; }
-.btn-add { background: var(--primary); flex: 1; }
-.btn-logout { background: #34495e; width: 100%; }
-.btn-del { background: var(--danger); padding: 3px 7px; font-size: 0.7rem; }
+/* Tabla */
+.tabla-container {
+    background: white; width: 95%; max-width: 420px;
+    border-radius: 10px; overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
 
-.table-container { background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
 table { width: 100%; border-collapse: collapse; table-layout: fixed; }
 
-th { background: var(--primary); color: white; padding: 8px 2px; font-size: 0.7rem; text-align: center; }
-td { padding: 6px 2px; border-bottom: 1px solid #eee; color: #000 !important; text-align: center; }
+thead { background-color: var(--azul); color: white; }
+th { padding: 10px 2px; font-size: 0.75rem; font-weight: 600; }
 
-/* COLUMNAS */
-th:nth-child(1), td:nth-child(1) { width: 25%; } /* Servicio */
-th:nth-child(2), td:nth-child(2) { width: 25%; } /* Cliente */
-th:nth-child(3), td:nth-child(3) { width: 22%; } /* Monto */
-th:nth-child(4), td:nth-child(4) { width: 18%; } /* Hora */
-th:nth-child(5), td:nth-child(5) { width: 10%; } /* Borrar */
+td { padding: 8px 2px; border-bottom: 1px solid #f5f5f5; text-align: center; }
 
-/* EL SÍMBOLO $ PEGADO AL NÚMERO */
-.celda-monto { text-align: center !important; }
-.monto-wrapper { display: inline-flex; align-items: center; gap: 2px; }
-.currency-symbol { font-weight: 900; font-size: 0.9rem; }
-.monto-input { width: 55px !important; text-align: left !important; padding: 0 !important; border: none; background: transparent; }
+/* Anchos */
+th:nth-child(1), td:nth-child(1) { width: 22%; }
+th:nth-child(2), td:nth-child(2) { width: 22%; }
+th:nth-child(3), td:nth-child(3) { width: 30%; }
+th:nth-child(4), td:nth-child(4) { width: 18%; }
+th:nth-child(5), td:nth-child(5) { width: 8%; }
 
-.editable { width: 100%; border: 1px solid transparent; background: transparent; font-size: 0.85rem; text-align: center; color: #000 !important; }
-.editable-date { display: block; width: 100%; border: 1px solid transparent; background: transparent; font-weight: bold; font-size: 0.75rem; text-align: center; }
-.fecha-small { font-size: 0.6rem !important; color: #666; font-weight: normal; }
+.input-tab {
+    width: 95%; border: none; background: transparent;
+    text-align: center; font-size: 0.85rem; color: #333;
+}
 
-.editing .editable, .editing .editable-date { border-bottom: 1px solid #ccc; background: #fff; }
+.monto-wrapper { display: flex; align-items: center; justify-content: center; gap: 2px; }
+.signo { font-weight: bold; font-size: 0.9rem; }
+.monto-format { font-size: 0.95rem; }
+.monto-input { width: 80%; border: none; background: transparent; font-weight: bold; font-size: 0.95rem; text-align: left; }
 
-.fila-total { background: #e8f5e9 !important; border-top: 2px solid var(--success); }
-input:disabled { opacity: 1; -webkit-text-fill-color: #000000; }
+.td-time { line-height: 1.1; }
+.h-v { font-weight: bold; font-size: 0.8rem; }
+.f-v { color: #888; font-size: 0.65rem; }
 
-#status-msg { text-align: center; font-size: 0.8rem; margin-bottom: 5px; }
+.total-bar {
+    background-color: var(--verde); padding: 12px 15px;
+    display: flex; justify-content: space-between;
+    font-weight: 800; font-size: 1.1rem;
+    border-top: 1px solid #aecdb0; color: #000;
+}
+
+.btn-x { background: none; border: none; color: #ff4d4d; font-weight: bold; cursor: pointer; }
+
+/* Admin Controles */
+#admin-controls { display: none; flex-direction: column; gap: 8px; align-items: center; }
+.admin-btns { display: flex; gap: 8px; width: 100%; }
+.btn-act { flex: 1; padding: 8px; border-radius: 6px; border: none; color: white; font-weight: bold; font-size: 0.8rem; }
+.filtro-container { font-size: 0.75rem; display: flex; align-items: center; gap: 5px; margin: 5px 0; }
+.input-date { padding: 4px; border: 1px solid #ddd; border-radius: 4px; font-size: 0.8rem; }
+.btn-clear { background: #999; color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 0.7rem; }
+.btn-logout { background: #eee; color: #555; border: none; width: 100%; padding: 5px; border-radius: 4px; font-size: 0.7rem; margin-top: 5px; }
+
+.bld { font-weight: 700; }
+input:disabled { opacity: 1; -webkit-text-fill-color: #000; }

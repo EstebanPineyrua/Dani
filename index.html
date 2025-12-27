@@ -10,31 +10,33 @@
 
     <h1>✂️ Dani Peluquería</h1>
 
-    <div id="status-msg">Conectando...</div>
-
-    <div id="admin-panel">
-        <input type="password" id="admin-pass" placeholder="Clave">
-        <button onclick="activarModoAdmin()" id="btn-login" class="btn-login">🔓 Entrar</button>
+    <div class="main-card">
+        <div id="status-msg">Conectando...</div>
         
-        <div id="admin-controls" style="display:none; flex-direction: column; gap: 8px; width: 100%;">
-            <div style="display: flex; gap: 8px; width: 100%;">
-                <button onclick="agregarFila()" class="btn-add">➕ Nuevo</button>
-                <button onclick="guardarCambios()" id="btn-save" class="btn-save">💾 Guardar</button>
+        <div id="login-box">
+            <input type="password" id="admin-pass" class="input-login" placeholder="Clave">
+            <button onclick="activarModoAdmin()" class="btn-entrar">🔓 Entrar</button>
+        </div>
+
+        <div id="admin-controls" style="display:none;">
+            <div class="admin-btns">
+                <button onclick="agregarFila()" style="background:#3498db" class="btn-act">➕ Nuevo</button>
+                <button onclick="guardarCambios()" id="btn-save" class="btn-act">💾 Guardar</button>
             </div>
             
             <div class="filtro-container">
-                <label>🔎 Ver día: </label>
-                <input type="date" id="filtro-fecha" onchange="renderTabla()">
-                <button onclick="limpiarFiltro()" class="btn-clear">Todos</button>
+                <label>Día:</label>
+                <input type="date" id="filtro-fecha" onchange="renderTabla()" class="input-date">
+                <button onclick="limpiarFiltro()" class="btn-clear">Ver Todo</button>
             </div>
             
             <button onclick="cerrarSesion()" class="btn-logout">🚪 Salir</button>
         </div>
     </div>
 
-    <div id="loading">Sincronizando...</div>
+    <div id="loading" style="text-align:center; font-size:0.8rem; margin-bottom:10px;">Sincronizando...</div>
 
-    <div class="table-container">
+    <div class="tabla-container">
         <table>
             <thead>
                 <tr>
@@ -47,10 +49,16 @@
             </thead>
             <tbody id="tabla-body"></tbody>
         </table>
+        
+        <div class="total-bar">
+            <span>REGISTRADO:</span>
+            <span id="total-monto">$0</span>
+        </div>
     </div>
 
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.15.0/firebase-database-compat.js"></script>
     <script src="js/script.js"></script>
+
 </body>
 </html>
