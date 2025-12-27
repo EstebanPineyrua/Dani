@@ -1,4 +1,3 @@
-// Configuración de Dani Peluquería
 const firebaseConfig = {
     apiKey: "AIzaSyCrXnHPcq9J__LWAH7yCd__CtC77MitZ2A",
     authDomain: "dani-peluqueria.firebaseapp.com",
@@ -9,14 +8,12 @@ const firebaseConfig = {
     appId: "1:733641745768:web:b8f771ddf387ccb037a2dd"
 };
 
-// Inicialización
 firebase.initializeApp(firebaseConfig);
 const db = firebase.database();
 
 let stockData = [];
 let isAdmin = false;
 
-// Cargar datos en tiempo real
 db.ref("servicios").on("value", (snapshot) => {
     const data = snapshot.val();
     stockData = data ? Object.values(data) : [];
@@ -34,14 +31,11 @@ function activarModoAdmin() {
         document.getElementById('btn-login').style.display = 'none';
         document.getElementById('col-acciones').style.display = 'table-cell';
         
-        // Al entrar, mostramos por defecto lo de HOY
         const hoy = new Date().toISOString().split('T')[0];
         document.getElementById('filtro-fecha').value = hoy;
         
         renderTabla();
-    } else {
-        alert("Clave incorrecta");
-    }
+    } else { alert("Clave incorrecta"); }
 }
 
 function renderTabla() {
@@ -49,13 +43,11 @@ function renderTabla() {
     const filtro = document.getElementById('filtro-fecha').value;
     tbody.innerHTML = "";
     
-    // Filtrar datos
     let datosAMostrar = stockData;
     if (filtro) {
         datosAMostrar = stockData.filter(item => item.fechaId === filtro);
     }
 
-    // Ordenar: lo más nuevo arriba (Fecha + Hora)
     const datosOrdenados = [...datosAMostrar].sort((a, b) => {
         return (b.fechaId + b.hora).localeCompare(a.fechaId + a.hora);
     });
@@ -73,8 +65,10 @@ function renderTabla() {
             <td><input class="editable bold-text" value="${item.servicio || ''}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'servicio', this.value)"></td>
             <td><input class="editable" value="${item.cliente || ''}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'cliente', this.value)"></td>
             <td>
-                <span style="font-weight:bold; color:black;">$</span>
-                <input type="number" class="editable" style="width:75%; font-weight:bold;" value="${item.monto || 0}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'monto', Number(this.value))">
+                <div class="monto-container">
+                    <span class="currency-symbol">$</span>
+                    <input type="number" class="editable bold-text monto-input" value="${item.monto || 0}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'monto', Number(this.value))">
+                </div>
             </td>
             <td>
                 <input type="time" class="editable-date" value="${item.hora}" ${isAdmin?'':'disabled'} onchange="actualizarDato(${indexReal}, 'hora', this.value)">
@@ -85,13 +79,12 @@ function renderTabla() {
         tbody.appendChild(row);
     });
 
-    // Fila de Total
     if (datosOrdenados.length > 0) {
         const tRow = document.createElement('tr');
         tRow.className = "fila-total";
         tRow.innerHTML = `
-            <td colspan="2" style="text-align:right; font-weight:bold;">TOTAL REGISTRADO:</td>
-            <td colspan="3" style="color: #27ae60; font-weight:900; font-size:1.3rem;">$${totalAcumulado}</td>
+            <td colspan="2" style="text-align:right; font-weight:bold;">TOTAL:</td>
+            <td colspan="3" style="color: #27ae60; font-weight:900; font-size:1.2rem; text-align:left; padding-left:15px;">$${totalAcumulado}</td>
         `;
         tbody.appendChild(tRow);
     }
@@ -130,10 +123,8 @@ async function guardarCambios() {
     btn.innerText = "⏳ Guardando...";
     try {
         await db.ref("servicios").set(stockData);
-        alert("✅ Caja guardada en la nube");
-    } catch (e) {
-        alert("Error: " + e.message);
-    }
+        alert("✅ Caja guardada");
+    } catch (e) { alert("Error: " + e.message); }
     btn.innerText = "💾 Guardar Todo";
 }
 

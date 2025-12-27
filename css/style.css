@@ -6,7 +6,7 @@
 }
 
 body { 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+    font-family: 'Segoe UI', sans-serif; 
     background: #f4f7f6; 
     padding: 10px; 
     margin: 0 auto; 
@@ -49,6 +49,7 @@ input[type="password"], input[type="date"], input[type="time"] {
     border-radius: 8px; 
     color: #000; 
     font-size: 1rem;
+    background: white;
 }
 
 button { 
@@ -63,7 +64,7 @@ button {
 .btn-login { background: var(--dark); width: 100%; max-width: 300px; }
 .btn-save { background: var(--success); flex: 1; }
 .btn-add { background: var(--primary); flex: 1; }
-.btn-logout { background: #34495e; width: 100%; margin-top: 5px; }
+.btn-logout { background: #34495e; width: 100%; }
 .btn-del { background: var(--danger); padding: 5px 10px; }
 .btn-clear { background: #95a5a6; padding: 8px; font-size: 0.8rem; }
 
@@ -74,9 +75,28 @@ button {
     box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
 }
 
-table { width: 100%; border-collapse: collapse; min-width: 500px; }
+table { width: 100%; border-collapse: collapse; min-width: 480px; }
 th { background: var(--primary); color: white; padding: 12px; text-align: left; font-size: 0.85rem; }
-td { padding: 12px; border-bottom: 1px solid #eee; color: #000 !important; }
+td { padding: 10px; border-bottom: 1px solid #eee; color: #000 !important; vertical-align: middle; }
+
+/* Alineación del Monto con el $ */
+.monto-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.currency-symbol {
+    font-weight: 800;
+    color: #000;
+    font-size: 1rem;
+}
+
+.monto-input {
+    width: 70px !important;
+    padding: 4px 0 !important;
+    text-align: left;
+}
 
 .editable { 
     width: 100%; 
@@ -98,7 +118,7 @@ td { padding: 12px; border-bottom: 1px solid #eee; color: #000 !important; }
 
 .bold-text { font-weight: 800 !important; }
 
-/* Cuando está en modo edición */
+/* Efecto al editar */
 .editing .editable, .editing .editable-date { 
     border: 1px solid #ccc; 
     background: #fff; 
@@ -121,4 +141,5 @@ input:disabled {
 @media (max-width: 600px) {
     .filtro-container { flex-direction: column; }
     button { width: 100%; }
+    td { padding: 8px 5px; font-size: 0.85rem; }
 }
